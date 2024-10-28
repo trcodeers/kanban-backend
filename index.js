@@ -1,5 +1,7 @@
 
 const express = require('express')
+require('dotenv').config();
+
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -13,8 +15,9 @@ app.use(cors({
 
 app.use(express.json());
 app.use('/task', taskRoute);
-
-mongoose.connect('mongodb+srv://taruntarunksingh:LSfM9KZW6B4MxtxR@cluster0.hxfuk.mongodb.net/DEMO?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(
+    process.env.mongoURL
+    )
     .then(() => {
         console.log('Connected to MongoDB');
 });
